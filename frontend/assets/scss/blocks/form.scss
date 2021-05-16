@@ -1,0 +1,12 @@
+.form-block {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    &__header {
+        padding: 20px 32px;
+    }
+    &__footer {
+        display: flex;
+        align-items: center;
+        background-color: $color-gray-200;
+        padding: 20px 32px;
+    }
+}

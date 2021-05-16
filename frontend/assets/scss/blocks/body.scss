@@ -1,0 +1,39 @@
+.body {
+    &__fallback {
+        display: flex;
+    }
+    &__wrapper {
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        overflow: hidden;
+        transition: $transition-main;
+    }
+    &__sidebar {
+        display: flex;
+        flex: 0 0 140px;
+    }
+    &__main {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 20px 48px;
+    }
+    &__header {
+        flex: 0 0 auto;
+    }
+    &__container {
+        flex: 1 1 auto;
+        padding-bottom: 48px;
+        @include media-breakpoint-down(sm) {
+            padding-bottom: 20px;
+        }
+    }
+}
+
+.body.is-overlay {
+    overflow: hidden;
+    .body__wrapper {
+        filter: blur(10px);
+    }
+}

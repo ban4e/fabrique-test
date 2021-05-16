@@ -1,0 +1,37 @@
+$spacings: 0, 4, 8, 16, 24, 32, 40, 48, 64;
+
+@each $spacing in $spacings {
+    .mb-#{$spacing} {
+        margin-bottom: #{$spacing}px;
+    }
+    .mt-#{$spacing} {
+        margin-top: #{$spacing}px;
+    }
+    .mr-#{$spacing} {
+        margin-right: #{$spacing}px;
+    }
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@each $name, $size in $media-sizes {
+    @media (max-width: $size) {
+        .#{$name}\:hidden {
+            display: none !important;
+        }
+        @each $spacing in $spacings {
+            .#{$name}\:mb-#{$spacing} {
+                margin-bottom: #{$spacing}px;
+            }
+            .#{$name}\:mt-#{$spacing} {
+                margin-top: #{$spacing}px;
+            }
+        }
+    }
+}

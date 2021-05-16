@@ -1,0 +1,21 @@
+.user-profile {
+    display: flex;
+    align-items: center;
+    &__avatar {
+        width: 56px;
+        height: 56px;
+        background-color: $color-gray-100;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    &__title {
+        font-weight: 700;
+    }
+    &__position {
+        @include rhythm(12);
+        color: $color-gray-500;
+    }
+}

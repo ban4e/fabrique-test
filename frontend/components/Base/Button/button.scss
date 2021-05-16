@@ -1,0 +1,172 @@
+.button {
+    @include rhythm(16, 16);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px 32px;
+    border-radius: 12px;
+    color: $color-blue-500;
+    background-color: $color-white;
+    box-shadow: 0 8px 15px rgba($color-black, 0.1);
+    font-weight: 700;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: $transition-main;
+    @include media-breakpoint-down(sm) {
+        @include rhythm(14, 12);
+        padding: 16px 24px;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        @include trbl(0);
+        border: 2px solid $color-white;
+        border-radius: inherit;
+        transition: $transition-main;
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+    }
+    &__content.is-invisible {
+        opacity: 0;
+    }
+    &__text {
+        user-select: none;
+    }
+    &__icon {
+        transition: $transition-main;
+    }
+    &__progress {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -10px;
+        margin-left: -10px;
+        color: $color-white;
+        animation: rotate-360 1.4s linear infinite;
+        width: 20px;
+        height: 20px;
+    }
+    &__progress-icon {
+        display: block;
+        width: 20px;
+    }
+    &__suffix,
+    &__prefix {
+        display: flex;
+        flex: 0 0 auto;
+        fill: currentColor;
+    }
+    &__suffix {
+        margin-left: 4px;
+    }
+    &__prefix {
+        margin-right: 4px;
+    }
+}
+.button:hover {
+    color: $color-white;
+    background-color: $color-blue-500;
+    box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
+    &::before {
+        border-color: $color-blue-500;
+    }
+}
+.button.is-disabled,
+.button:disabled,
+.button.button.is-disabled:hover,
+.button:disabled:hover {
+    pointer-events: none;
+    background-color: rgba($color-black, 0.3);
+    cursor: default;
+    &::before {
+        border-color: rgba($color-black, 0.3);
+    }
+}
+.button.is-loading {
+    pointer-events: none;
+    .button__content {
+        opacity: 0;
+    }
+}
+
+.button_full {
+    width: 100%;
+}
+.button_theme_green {
+    color: $color-white;
+    background-color: $color-success;
+    &::before {
+        border-color: $color-success;
+    }
+    &:hover {
+        background-color: $color-success;
+        &::before {
+            border-color: $color-success;
+        }
+    }
+}
+.button_theme_red {
+    color: $color-white;
+    background-color: $color-danger;
+    &::before {
+        border-color: $color-danger;
+    }
+    &:hover {
+        background-color: $color-danger;
+        &::before {
+            border-color: $color-danger;
+        }
+    }
+}
+.button_outline {
+    background-color: transparent;
+    &::before {
+        border-color: currentColor;
+    }
+}
+.button_outline.button_theme_red {
+    color: $color-danger;
+    &:hover {
+        color: $color-white;
+    }
+}
+.button_outline.button_theme_green {
+    color: $color-success;
+    &:hover {
+        color: $color-white;
+    }
+}
+
+.button-pulsy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    transform: translateZ(0);
+    color: inherit;
+    pointer-events: none;
+    &__target {
+        position: absolute;
+        background: rgba($color-black, 0.15);
+        border-radius: 100%;
+        transform: scale(0);
+        transform-origin: center center;
+        pointer-events: none;
+        will-change: transform;
+    }
+}
+
+.pulsy-enter-active {
+    animation: pulsy 0.75s ease-out;
+}
+.pulsy-leave-active {
+    animation: none;
+}

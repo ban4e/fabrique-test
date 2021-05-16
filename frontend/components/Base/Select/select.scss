@@ -1,0 +1,55 @@
+.selector {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    width: 100%;
+    &__select {
+        display: inline-flex;
+        flex: 1 1 auto;
+        background-color: transparent;
+        outline: none;
+        width: auto;
+        padding: 17px 40px 17px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba($color-black, 0.1);
+        background-color: $color-white;
+        color: currentColor;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        &::-ms-expand {
+            display: none;
+        }
+        @include media-breakpoint-down(sm) {
+            padding-right: 20px;
+        }
+    }
+    &__option {
+        @include rhythm(16, 20);
+        color: $color-text;
+        padding: 3px 7px;
+    }
+    &__indicator-wrapper {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translate(0, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        pointer-events: none;
+    }
+    &__indicator {
+        fill: currentColor;
+        width: 24px;
+        @include media-breakpoint-down(sm) {
+            width: 16px;
+        }
+    }
+}
+select::-ms-expand.selector {
+    display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
+}
