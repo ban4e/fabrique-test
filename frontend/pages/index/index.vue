@@ -5,7 +5,7 @@
             <RespondentBlock v-model="formData" />
         </div>
         <div class="form-block__footer">
-            <BaseButton :is-loading="isRequest" @click.native.prevent="sendRequest"> Протестировать опрос (запрос) </BaseButton>
+            <BaseButton :is-loading="isRequest" @click.native.prevent="clearFormData"> Протестировать опрос (очистить все) </BaseButton>
             <BaseButton type="submit" theme="green" :is-loading="isLoading" class="ml-auto"> Далее </BaseButton>
         </div>
     </form>
@@ -23,27 +23,27 @@ export default {
         isRequest: false
     }),
     methods: {
-        onSubmit() {
-            this.isLoading = true;
-            setTimeout(() => {
-                this.isLoading = false;
-                this.$toast.show('Пустой обработчик отправки формы');
-            }, 5000);
-        },
-        sendRequest() {
+        async onSubmit() {
             try {
-                this.isRequest = true;
-                fetch('https://jsonplaceholder.typicode.com/posts')
-                    .then(response => response.json())
-                    .then(json => {
-                        this.$toast.success('Запрос отправлен. Результат в консоли');
-                        console.log(json);
-                    });
+                this.isLoading = true;
+                const result = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    body: JSON.stringify({ ...this.formData }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8'
+                    }
+                });
+                const resultData = await result.json();
+                this.$toast.success('Запрос отправлен. Результат в консоли');
+                console.log(resultData);
             } catch (err) {
                 console.error(err);
             } finally {
-                this.isRequest = false;
+                this.isLoading = false;
             }
+        },
+        clearFormData() {
+            this.formData = [];
         }
     }
 };
